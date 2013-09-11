@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view locale="#{localeBean.locale}"/>
+	
+<ui:composition template="/templates/mensajeria.xhtml">
+	<ui:define name="center">
+	  <h:messages layout="table" />
+	        <h:form enctype="multipart/form-data">
+	            <p:fileUpload fileUploadListener="#{fileUploadController.upload}" 
+	            			  showButtons="false"
+	            			  id="archivo"
+	                          allowTypes="/(\.|\/)(csv)$/" 
+	                          sizeLimit="10000000"
+	                          invalidFileMessage="fichero inválido" 
+	                          invalidSizeMessage="ha excedido el tamaño máximo permitido"
+	                          label="Seleccionar Archivo .CSV" 
+	                          cancelLabel="Cancelar" 
+	                          uploadLabel="Subir" 
+	                          update="conta archivo" 
+	                          disabled="#{fileUploadController.deshabilitado}">
+	            </p:fileUpload>             
+				
+				<p:panel id="conta">
+					<h:panelGrid columns="2">
+						<h:outputText value="Registros Procesados:"/>
+				        <h:outputText value="#{fileUploadController.registros}"/>
+						<h:outputText value="Personas Adicionadas:"/>
+				        <h:outputText value="#{fileUploadController.personasCargadas}"/>
+						<h:outputText value="Personas Rechazadas:" styleClass="letraRoja"/>
+				        <h:outputText value="#{fileUploadController.perRechazadas}" styleClass="letraRoja"/>
+						<h:outputText value="Guias Adicionadas:"/>
+				        <h:outputText value="#{fileUploadController.guiasCargadas}"/>
+						<h:outputText value="Guias Rechazadas:" styleClass="letraRoja"/>
+				        <h:outputText value="#{fileUploadController.guiasRechazadas}" styleClass="letraRoja"/>
+					</h:panelGrid>
+					<br/>
+				</p:panel>
+
+	        </h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

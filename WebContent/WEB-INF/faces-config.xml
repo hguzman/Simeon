@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+    version="2.1">
+    <application>
+        <locale-config>
+            <default-locale>es</default-locale>
+            <supported-locale>es</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>com.simeon.controladores.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
+    
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/central.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+	    <from-view-id>*</from-view-id>
+	    <navigation-case>
+	        <from-outcome>salir</from-outcome>
+	        <to-view-id>/index.xhtml</to-view-id>
+	        <redirect />
+	    </navigation-case>
+	    <navigation-case>
+	        <from-outcome>mensajeria</from-outcome>
+	        <to-view-id>/templates/mensajeria.xhtml</to-view-id>
+	        <redirect />
+	    </navigation-case>
+	    <navigation-case>
+	        <from-outcome>nuevaGuia</from-outcome>
+	        <to-view-id>/mensajeria/nuevaGuia.xhtml</to-view-id>
+	        <redirect />
+	    </navigation-case>
+	    <navigation-case>
+	        <from-outcome>imprimirGuia</from-outcome>
+	        <to-view-id>/mensajeria/imprimirGuia.xhtml</to-view-id>
+	        <redirect />
+	    </navigation-case>	    	    
+	    <navigation-case>
+	        <from-outcome>mMetrotel</from-outcome>
+	        <to-view-id>/mensajeria/generarGuia.xhtml</to-view-id>
+	        <redirect />
+	    </navigation-case>	    	    
+	    	    	    	    	    
+	    <navigation-case>
+	        <from-outcome>home</from-outcome>
+	        <to-view-id>/central.xhtml</to-view-id>
+	        <redirect />
+	    </navigation-case>	    	    
+	    <navigation-case>
+	        <from-outcome>administrador</from-outcome>
+	        <to-view-id>/templates/administrador.xhtml</to-view-id>
+	        <redirect />
+	    </navigation-case>	    	    
+	    <navigation-case>
+	        <from-outcome>nuevaPersona</from-outcome>
+	        <to-view-id>/personas/nuevaPersona.xhtml</to-view-id>
+	        <redirect />
+	    </navigation-case>	    	    
+	    	    	    	    
+	</navigation-rule>
+    
+</faces-config>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view locale="#{localeBean.locale}"/>
+	
+<ui:composition template="/templates/administrador.xhtml">
+	<ui:define name="center">
+		<h:form>
+			<p:panel header="Registro Empleados">
+				<p:messages showDetail="true" id="msgEmpleados"/>
+				<p:panelGrid columns="2">
+					<p:outputLabel for="autoCompleteEmpleado"
+								   value="#{msg['empleado.nombre']}"/>
+					<p:autoComplete id="autoCompleteEmpleado"
+									size="80"
+									value="#{ctrlEmpleado.empleado}"
+									completeMethod="#{ctrlEmpleado.completarPersona}"
+									var="p"
+									itemLabel="#{p.nombre}"
+									itemValue="#{p}"
+									converter="personac"
+									forceSelection="true"
+									required="true"
+									>
+						<p:column>
+							#{p.codTipo} 
+						</p:column>
+						<p:column>
+							#{p.numDocumento}
+						</p:column>
+						<p:column>			
+							#{p.nombre}
+						</p:column>
+					</p:autoComplete>
+					<p:outputLabel for="fechaVinculacion" value="#{msg['empleado.fechaVinculacion']}"></p:outputLabel>			        
+					<p:calendar effect="explode" 
+								id="fechaVinculacion" 
+								pattern="MM/dd/yyyy hh:mm a"
+								value="#{ctrlEmpleado.fechaIngreso}"
+								required="true"
+								requiredMessage="Indique una fecha de Ingreso"
+								/> 			        
+					
+				</p:panelGrid>
+				<p:commandButton value="#{msg['empleado.guardar']}"
+								 action="#{ctrlEmpleado.guardarEmpleado}"
+								 update="msgEmpleados"
+								 />
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

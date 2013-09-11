@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view locale="#{localeBean.locale}"/>
+	
+<ui:composition template="/templates/mensajeria.xhtml">
+	<ui:define name="center">
+		<h:form>
+			<p:panel header="Datos Guia" id="panelGuia">
+				<p:messages id="mensajes" showDetail="true"/>
+				<p:focus context="panelGuia"/>
+				<p:panelGrid columns="2">
+					<p:outputLabel for="autoCompleteRemitente"
+								   value="#{msg['guia.remitente']}"/>
+					<p:autoComplete id="autoCompleteRemitente"
+									size="80"
+									value="#{ctrlGuias.personaRemitente}"
+									completeMethod="#{ctrlGuias.completarPersona}"
+									var="p"
+									itemLabel="#{p.nombre}"
+									itemValue="#{p}"
+									converter="personac"
+									forceSelection="true">
+						<p:column>
+							#{p.codTipo} 
+						</p:column>
+						<p:column>
+							#{p.numDocumento}
+						</p:column>
+						<p:column>			
+							#{p.nombre}
+						</p:column>
+					</p:autoComplete>
+					<p:outputLabel for="autoCompleteDestinatario"
+								   value="#{msg['guia.destinatario']}"/>
+					<p:autoComplete id="autoCompleteDestinatario"
+									size="80"
+									value="#{ctrlGuias.personaDestinatario}"
+									completeMethod="#{ctrlGuias.completarPersona}"
+									var="p1"
+									itemLabel="#{p1.nombre}"
+									itemValue="#{p1}"
+									converter="personac"
+									forceSelection="true">
+						<p:column>
+							#{p1.codTipo} 
+						</p:column>
+						<p:column>
+							#{p1.numDocumento}
+						</p:column>
+						<p:column>
+							#{p1.nombre}
+						</p:column>
+					</p:autoComplete>
+				</p:panelGrid>
+				<p:commandButton value="#{msg['guia.guardar']}"
+								 action="#{ctrlGuias.guardarGuia}"
+								 update="mensajes">
+				</p:commandButton>
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

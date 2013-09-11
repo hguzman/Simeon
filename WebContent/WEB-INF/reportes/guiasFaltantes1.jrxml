@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="guiaMetroEnvios" language="groovy" pageWidth="354" pageHeight="240" orientation="Landscape" columnWidth="334" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="562ca6fb-e788-474c-a10c-613fe9f7cbd9">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="dataset1" uuid="bad63f74-75fc-4273-8bb4-865f2279fe6e">
+		<queryString language="SQL">
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<queryString>
+		<![CDATA[select g.idguias,g.fechahora,p1.cod_tipo,p1.nombre as remitente,
+	   p1.direccion as dirremi,p2.cod_tipo,p2.nombre as destinatario,
+	   p2.direccion as dirdes, m.municipio as mre, p1.telefono as tre,
+	   p2.num_documento, g.peso,s.valor
+from guias as g, personas as p1, personas as p2, municipios as m, servicios as s
+where g.remitente=p1.id
+and g.destinatario=p2.id
+and g.cod_servicio=s.cod_servicio
+and p1.cod_departamento=m.cod_departamento
+and p1.cod_municipio=m.cod_municipio
+and g.impresa=false
+order by g.idguias asc;]]>
+	</queryString>
+	<field name="idguias" class="java.lang.Integer"/>
+	<field name="fechahora" class="java.sql.Timestamp"/>
+	<field name="cod_tipo" class="java.lang.Integer"/>
+	<field name="remitente" class="java.lang.String"/>
+	<field name="dirremi" class="java.lang.String"/>
+	<field name="destinatario" class="java.lang.String"/>
+	<field name="dirdes" class="java.lang.String"/>
+	<field name="mre" class="java.lang.String"/>
+	<field name="tre" class="java.lang.String"/>
+	<field name="num_documento" class="java.lang.Long"/>
+	<field name="peso" class="java.math.BigDecimal"/>
+	<field name="valor" class="java.lang.Long"/>
+	<detail>
+		<band height="218" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="25e39a5f-5c3b-4d84-a8f7-958fc9c692ce" x="2" y="2" width="76" height="205"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="5">
+				<reportElement uuid="25e39a5f-5c3b-4d84-a8f7-958fc9c692ce" x="99" y="29" width="230" height="45"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="103" y="32" width="39" height="7"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Remitente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="104" y="41" width="39" height="7"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="108" y="89" width="39" height="7"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contacto:]]></text>
+			</staticText>
+			<rectangle radius="5">
+				<reportElement uuid="25e39a5f-5c3b-4d84-a8f7-958fc9c692ce" x="99" y="77" width="231" height="19"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="104" y="79" width="47" height="7"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destinatario:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="105" y="89" width="39" height="7"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="65777954-a433-4b2b-9b83-1251e3164004" x="99" y="2" width="85" height="23"/>
+				<imageExpression><![CDATA["/home/hguzman/workspace/MetroEnvios/WebContent/images/png/logoguia.png"]]></imageExpression>
+			</image>
+			<rectangle radius="5">
+				<reportElement uuid="25e39a5f-5c3b-4d84-a8f7-958fc9c692ce" x="99" y="100" width="71" height="65"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="5">
+				<reportElement uuid="25e39a5f-5c3b-4d84-a8f7-958fc9c692ce" x="177" y="100" width="153" height="65"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="105" y="102" width="61" height="7"/>
+				<textElement textAlignment="Center">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Causal de Devolución]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="215" y="154" width="79" height="7"/>
+				<textElement textAlignment="Center">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma Quien Recibe]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="65096d1f-d37e-4d8f-9694-a7e1ab15a394" x="151" y="32" width="166" height="7"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remitente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="48ae1f1c-71aa-40f4-b8be-e007e37255a0" x="151" y="41" width="165" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dirremi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a969e2c3-225d-4950-ab41-8f4681d2f842" x="151" y="79" width="165" height="7"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_documento}+" "+$F{destinatario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fd5c6350-9538-4451-8052-057b859ef9cb" x="151" y="89" width="163" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dirdes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b5c8d1e0-dac8-42a1-884b-9d37ba9b150d" x="29" y="5" width="10" height="64"/>
+				<textElement textAlignment="Right" rotation="Left">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechahora}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="104" y="51" width="39" height="7"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Municipio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="59bf50ee-8ab7-4bf8-b813-2198f1d867ce" x="152" y="51" width="165" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="104" y="61" width="39" height="7"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0413f514-e486-41c6-b3ca-3a82d59a24bc" x="153" y="61" width="67" height="7"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="212" y="102" width="79" height="7"/>
+				<textElement textAlignment="Center">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos Entrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fe33c3dd-4a65-40aa-a628-52f1c3bcd9c3" x="180" y="111" width="149" height="43"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Fecha: _____ / _____ / _______ Hora: _____ : _____]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fe33c3dd-4a65-40aa-a628-52f1c3bcd9c3" x="103" y="112" width="66" height="49"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[___ Desconocido
+___ Dirección Deficiente
+___ Dirección Errada
+___ No existe el Número
+___ No reside
+___ Rehusado
+___ Se Traslado
+___ Nadien en el Predio]]></text>
+			</staticText>
+			<rectangle radius="5">
+				<reportElement uuid="25e39a5f-5c3b-4d84-a8f7-958fc9c692ce" x="217" y="169" width="113" height="27"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement uuid="65096d1f-d37e-4d8f-9694-a7e1ab15a394" x="8" y="72" width="10" height="130"/>
+				<textElement rotation="Left">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Remitente:\n"+ $F{remitente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="48ae1f1c-71aa-40f4-b8be-e007e37255a0" x="21" y="72" width="10" height="130"/>
+				<textElement rotation="Left">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dirección Remitente:\n"+$F{dirremi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a969e2c3-225d-4950-ab41-8f4681d2f842" x="37" y="7" width="10" height="195"/>
+				<textElement rotation="Left">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Destinatario:\n"+$F{num_documento}+" "+$F{destinatario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fd5c6350-9538-4451-8052-057b859ef9cb" x="48" y="10" width="10" height="192"/>
+				<textElement rotation="Left">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dirección Destinatario:\n"+$F{dirdes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="87d39b64-607e-4573-a41b-414f0191f566" x="223" y="173" width="100" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Peso (Grms): "+$F{peso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0bf92526-166d-403e-a400-00f008f83440" x="223" y="185" width="100" height="9"/>
+				<textElement textAlignment="Center">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Valor Total: "+$F{valor}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="5">
+				<reportElement uuid="25e39a5f-5c3b-4d84-a8f7-958fc9c692ce" x="99" y="169" width="114" height="27"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="8da05a60-4ef0-405e-88bd-31de637c45b2" x="105" y="171" width="47" height="7"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mensajero:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="29bf779f-d756-4100-80e4-520378cad847" x="63" y="6" width="10" height="194"/>
+				<textElement textAlignment="Center" rotation="Left">
+					<font size="3"/>
+				</textElement>
+				<text><![CDATA[Metroenvios: Nit. 802007653-0, Res. N° 2274 de 10-08-2008, Cra 44B # 53 - 19, Tels. 3703040 - 3703060
+www.metropolitanadeenvios.com, sistemas@metropolitanadeenvios.com.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b5c8d1e0-dac8-42a1-884b-9d37ba9b150d" x="161" y="20" width="52" height="10"/>
+				<textElement textAlignment="Center">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechahora}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="29bf779f-d756-4100-80e4-520378cad847" x="99" y="198" width="231" height="10"/>
+				<textElement textAlignment="Center">
+					<font size="4"/>
+				</textElement>
+				<text><![CDATA[Metroenvios: Nit. 802007653-0, Res. N° 2274 de 10-08-2008, Cra 44B # 53 - 19, Tels. 3703040 - 3703060
+www.metropolitanadeenvios.com, sistemas@metropolitanadeenvios.com.]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="4583fd92-2c82-46a5-b33a-5cd124383f8d" x="222" y="0" width="111" height="28"/>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{idguias}]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+			<componentElement>
+				<reportElement uuid="4583fd92-2c82-46a5-b33a-5cd124383f8d" x="8" y="2" width="18" height="70"/>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" orientation="90" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{idguias}]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

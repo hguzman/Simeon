@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view locale="#{localeBean.locale}"/>
+	
+	<h:head>
+	    <link href="images/galeria/favicon.ico" rel="icon" type="image/x-icon"/>       
+	    <link href="images/galeria/favicon.ico" rel="shortcut icon" type="image/x-icon"/>	       
+		<link href="#{request.contextPath}/css/default.css" rel="stylesheet" type="text/css" />
+		<title>#{msg.aplicacion}</title>
+	</h:head>
+	<h:body>
+		<div id="login">
+			<h:form>
+				<p:panel id="panel" header="#{msg['login.titulo']}">
+				    <p:focus context="panel"/>
+					<p:panelGrid columns="2">
+						<p:outputLabel value="#{msg['login.usuario']}"/>
+						<p:inputText value="#{ctrlSesion.login}"/>
+						<p:outputLabel value="#{msg['login.contrasena']}"/>
+						<p:inputText value="#{ctrlSesion.passwd}"/>
+						<p:outputLabel value="#{msg['login.idioma']}"/>
+						<p:selectOneMenu value="#{localeBean.language}">
+			                <f:selectItem itemValue="en" itemLabel="English" />
+			                <f:selectItem itemValue="es" itemLabel="Español" />			                
+			                <p:ajax event="change" update="panel"/>
+						</p:selectOneMenu>
+						
+					</p:panelGrid>
+					<p:commandButton value="#{msg['login.boton']}" action="#{ctrlSesion.entrar}" update="msgEntrada"/>
+				</p:panel>
+				<br/>
+				Versión: #{msg.version}
+				<p:messages showDetail="true" id="msgEntrada"/>
+			</h:form>	
+		</div>
+	</h:body>
+</html>

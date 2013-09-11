@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view locale="#{localeBean.locale}"/>
+	
+	<h:head>
+	    <link href="#{request.contextPath}/images/galeria/favicon.ico" rel="icon" type="image/x-icon"/>       
+	    <link href="#{request.contextPath}/images/galeria/favicon.ico" rel="shortcut icon" type="image/x-icon"/>	       
+		<link href="#{request.contextPath}/css/default.css" rel="stylesheet" type="text/css" />
+		<title>#{msg.aplicacion}</title>
+	</h:head>
+	<h:body>
+		#{ctrlSesion.puedeEntrar()}
+		<p:layout fullPage="true">
+			<p:layoutUnit position="north">
+				<div align="center">
+					<h1>Simeon</h1>
+					Sistema Integrado de Mensajeria Online
+				</div>
+				<b>Empresa:</b> Metroenevios Ltda
+			</p:layoutUnit>
+			<p:layoutUnit position="west">
+				<h:form>
+					<p:panelMenu styleClass="menu">
+						<p:submenu label="#{msg['administrador.personas']}">
+							<p:menuitem value="#{msg['administrador.nuevaPersona']}" icon="ui-icon-plus" action="nuevaPersona"/>							
+							<p:menuitem value="#{msg['administrador.nuevoEmpleado']}" icon="ui-icon-plus" action="/personas/nuevoEmpleado?faces-redirect=true"/>							
+							<p:menuitem value="#{msg['administrador.pagoAcordado']}" icon="ui-icon-plus" action="/personas/pagoAcordado?faces-redirect=true"/>							
+						</p:submenu>
+					</p:panelMenu>
+				</h:form>
+			</p:layoutUnit>
+			<p:layoutUnit position="center">
+				<ui:insert name="center">
+					Centro Nomina
+				</ui:insert>				
+			</p:layoutUnit>
+			<p:layoutUnit position="south">
+	            Copyright © 2012 Design Ing.Esp. Henry Guzmán Escorcia
+	            <br/>
+	             Versión: #{msg.version}
+				<h:form>
+					<p:dock>  
+					    <p:menuitem value="Home" 
+					    			icon="/images/dock/home.png" 
+					    			action="home"/>  
+					    <p:menuitem value="Mensajeria" 
+					    			icon="/images/dock/email.png" 
+					    			action="mensajeria"/>  
+					    <p:menuitem value="Nomina" 
+					    			icon="/images/dock/nomina.png" 
+					    			action="/templates/nomina?faces-redirect=true"/>  
+ 					    <p:menuitem value="Administrador" 
+					    			icon="/images/dock/administrador.png"
+					    			action="administrador"/>  
+					    <p:menuitem value="Cerrar Sesión" 
+					    			icon="/images/dock/salir.png" 
+					    			action="#{ctrlSesion.salir}"/>  
+					</p:dock>  
+				</h:form>
+
+			</p:layoutUnit>
+		</p:layout>
+	</h:body>
+</html>

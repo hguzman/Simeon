@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view locale="#{localeBean.locale}"/>
+	
+<ui:composition template="/templates/administrador.xhtml">
+	<ui:define name="center">
+		<h:form>
+			<p:panel header="#{msg['administrador.pagoAcordado']}" id="panel">
+				<p:messages showDetail="true" id="msgPago"/>
+				<p:panelGrid columns="2">
+					<p:outputLabel value="#{msg['empleado.nombre']}" for="empleado"/>
+					<p:selectOneMenu id="empleado" value="#{ctrlPago.codEmpleado}" required="true">
+						<f:selectItem itemLabel="#{msg['empleado.nombre']}" itemValue=""/>
+						<f:selectItems value="#{ctrlPago.empleados}"/>
+						<p:ajax listener="#{ctrlPago.cargarPagos}" update="pagos1"/>
+					</p:selectOneMenu>
+					<p:outputLabel value="#{msg['servicios.nombre']}" for="serv"/>
+					<p:selectOneMenu id="serv" value="#{ctrlPago.codServicio}" required="true">
+						<f:selectItem itemLabel="#{msg['servicios.nombre']}" itemValue=""/>
+						<f:selectItems value="#{ctrlPago.servicios}"/>
+					</p:selectOneMenu>
+					<p:outputLabel value="#{msg['pagoAcordado.pago']}" for="pago"/>
+					<p:inputText id="pago" value="#{ctrlPago.pagoAcordado}" required="true"/>					
+				</p:panelGrid>
+				<p:commandButton value="Guardar" action="#{ctrlPago.guardarPago}" update="msgPago pagos1">
+				</p:commandButton>
+				
+				<p:dataTable var="pag" value="#{ctrlPago.pagos}" id="pagos1">
+					<p:column headerText="Empleado">
+						<h:outputText value="#{pag.codEmpleado}"/>
+					</p:column>
+					<p:column headerText="Fecha">
+						<h:outputText value="#{pag.fechaAcuerdo}"/>
+					</p:column>
+					<p:column headerText="Servicio">
+						<h:outputText value="#{pag.codServicio}"/>
+					</p:column>
+					<p:column headerText="Pago">
+						<h:outputText value="#{pag.pagoAcordado}"/>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

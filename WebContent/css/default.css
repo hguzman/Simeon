@@ -1,0 +1,21 @@
+body {
+/*     background-color: #c2dfef; */
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 10px;
+}
+#login{
+	width: 320px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 150px;
+}
+.letraRoja{
+	color: red;
+	font-weight: bold;
+}
+.menu{
+	width:200px; 
+	font-size: 12px;
+}

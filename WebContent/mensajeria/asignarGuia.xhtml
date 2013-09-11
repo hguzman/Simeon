@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view locale="#{localeBean.locale}"/>
+	
+<ui:composition template="/templates/mensajeria.xhtml">
+	<ui:define name="center">
+		<h:form>
+			<p:panel header="#{msg['mensajeria.asignar']}">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="#{msg['empleado.nombre']}" for="emp"/>
+					<p:selectOneMenu value="#{ctrlAsignacion.codEmpleado}" id="emp" required="true">
+						<f:selectItem itemLabel="#{msg['empleado.seleccione']}" noSelectionOption="true"/>
+						<f:selectItems value="#{ctrlAsignacion.empleados}"/>
+						<p:ajax listener="#{ctrlAsignacion.cargarGuias}" update="panelAsignar"/>						
+					</p:selectOneMenu>
+				</h:panelGrid>
+			</p:panel>
+			<p:panel id="panelAsignar">
+				<p:focus for="gui"/>
+				<h:panelGrid columns="4">
+					<p:outputLabel value="#{msg['guia.numero']}" for="gui"/>
+					<p:inputText id="gui" value="#{ctrlAsignacion.idGuia}" required="true" />		
+					<p:commandButton value="#{msg['asig.guia']}" action="#{ctrlAsignacion.guardarAsignacion}" update="panelAsignar"/>	
+					<p:messages showDetail="true" id="msgAsignar"/>
+				</h:panelGrid>
+				<p:dataTable value="#{ctrlAsignacion.guias}" var="guia" id="tablaGuia" paginator="true" rows="8">
+					<p:column headerText="Guia">
+						<h:outputText value="#{guia.idGuia}"/>
+					</p:column>
+					<p:column headerText="Empleado">
+						<h:outputText value="#{guia.codEmpleado}"/>
+					</p:column>
+					<p:column headerText="Fecha">
+						<h:outputText value="#{guia.fechaAsignacion}"/>
+					</p:column>
+					<p:column headerText="Pagado">
+					    <p:selectBooleanButton value="#{guia.pagada}" onLabel="Yes" offLabel="No" disabled="true"/> 
+					</p:column>				
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view locale="#{localeBean.locale}"/>
+	
+<ui:composition template="/templates/administrador.xhtml">
+	<ui:define name="center">
+		<h:form>
+			<p:panel header="#{msg['administrador.personas']}" id="panel">
+				<p:messages showDetail="true"/>
+				<p:panelGrid columns="2">
+					<p:outputLabel value="#{msg['persona.tipo']}" for="tipo"/>
+					<p:selectOneMenu id="tipo" value="#{ctrlPersona.codTipo}" required="true">
+						<f:selectItem itemLabel="#{msg['persona.seleccione']}" itemValue=""/>
+						<f:selectItems value="#{ctrlPersona.tipos}"/>
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg['persona.numero']}" for="num"/>
+					<p:inputText value="#{ctrlPersona.numDocumento}" required="true" id="num"/>
+					<p:outputLabel value="#{msg['persona.nombre']}" for="nom"/>
+					<p:inputText value="#{ctrlPersona.nombre}" required="true" id="nom"/>
+					
+					<p:outputLabel value="#{msg['persona.departamento']}" for="deptos"/>
+					<p:selectOneMenu id="deptos" value="#{ctrlPersona.codDepartamento}" required="true">
+						<f:selectItem itemLabel="#{msg['persona.seldepto']}" itemValue=""/>
+						<f:selectItems value="#{ctrlPersona.departamentos}"/>
+						<p:ajax update="munic" listener="#{ctrlPersona.cargaMunic}"/>
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="#{msg['persona.municipio']}" for="munic"/>
+					<p:selectOneMenu id="munic" value="#{ctrlPersona.codMunicipio}" required="true">
+						<f:selectItem itemLabel="#{msg['persona.selmuni']}" itemValue=""/>
+						<f:selectItems value="#{ctrlPersona.municipios}"/>
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg['persona.direccion']}"/>
+					<p:inputText value="#{ctrlPersona.direccion}"/>
+					<p:outputLabel value="#{msg['persona.barrio']}"/>
+					<p:inputText value="#{ctrlPersona.barrio}"/>
+					<p:outputLabel for="telefono" value="#{msg['persona.telefono']}"/>
+					<p:inputMask id="telefono" mask="999-9999" value="#{ctrlPersona.telefono}"/>
+					<p:outputLabel for="celular" value="#{msg['persona.celular']}"/>
+					<p:inputMask id="celular" required="true" mask="(999) 999-9999" value="#{ctrlPersona.celular}"/>
+					<p:outputLabel for="email" value="#{msg['persona.email']}"/>
+					<p:inputText id="email" required="true" value="#{ctrlPersona.email}" validatorMessage="#{ctrlPersona.email} Correo No Valido">
+					 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</p:inputText>
+					
+				</p:panelGrid>
+			</p:panel>
+			<p:commandButton value="Guardar" action="#{ctrlPersona.guardarPersona}" update="panel"/>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
